@@ -10,17 +10,18 @@
   wayland,
   wayland-protocols,
   wayland-scanner,
+  hyprlang,
   nix-update-script,
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "hyprsunset";
-  version = "0.2.0";
+  version = "0.3.0";
 
   src = fetchFromGitHub {
     owner = "hyprwm";
     repo = "hyprsunset";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-EIJka3UtSEtmkDBjYiGeR/hO6s6R4x3K+rbUlc9KPBE=";
+    hash = "sha256-Cp5kHNfWFFyJpA5eRxZh/7fJcHU1uM2tBehQyeyKEUA=";
   };
 
   postPatch = ''
@@ -40,12 +41,13 @@ stdenv.mkDerivation (finalAttrs: {
     wayland
     wayland-protocols
     wayland-scanner
+    hyprlang
   ];
 
   strictDeps = true;
 
   passthru = {
-    updateScript = nix-update-script { };
+    updateScript = nix-update-script {};
   };
 
   meta = {
@@ -53,7 +55,7 @@ stdenv.mkDerivation (finalAttrs: {
     description = "Application to enable a blue-light filter on Hyprland";
     license = lib.licenses.bsd3;
     platforms = lib.platforms.linux;
-    teams = [ lib.teams.hyprland ];
+    teams = [lib.teams.hyprland];
     mainProgram = "hyprsunset";
   };
 })
